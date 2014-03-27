@@ -1,3 +1,5 @@
 Import-Module ActiveDirectory
 
-Get-ADUser -Filter * -SearchBase "DC=redacteddomainname,DC=local" -Properties name, whenCreated, whenChanged | Select name, whenCreated, whenChanged | Export-Csv ".\dates.csv"
+Import-Module ActiveDirectory
+
+Get-ADUser -Filter * -SearchBase "OU=UsersID,DC=redacteddomainname,DC=local" -Properties SAMAccountName, Enabled, displayName, c, manager, whenCreated, whenChanged,employeeID | Select SAMAccountName, Enabled, displayName, c, manager, whenCreated, whenChanged,employeeID | Sort SAMAccountName | Export-Csv ".\usuariosfecha.csv"
